@@ -19,3 +19,20 @@ button:hover {
     background-color: #2b2a2a;
     cursor: pointer;
 }
+
+#cards div {
+    border: 2px solid #c73333;
+    border-radius: 8px;
+    background-color: #333232;
+    margin: 5px;
+    width: 400px;
+    height: 400px;
+    padding: 16px;
+    display: inline-block;
+    align-content: center;
+    vertical-align: top;
+}
+
+#cards div img {
+    height: 140px;
+}
