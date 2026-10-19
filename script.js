@@ -1,6 +1,6 @@
 const loadButton = document.getElementById("loadButton");
 const messages = document.getElementById("messages");
-const summary = document.getElementById("summmary");
+const summary = document.getElementById("summary");
 const cards = document.getElementById("cards");
 
 const xml = new XMLHttpRequest();
@@ -34,6 +34,25 @@ xml.addEventListener("load", () => {
 
             cards.append(card);
         }
+
+        let oldestConsole;
+        let newestConsole;
+
+        for (let c of consoles) {
+            if (oldestConsole === undefined) {
+                oldestConsole = c;
+            } else if (oldestConsole.year > c.year) {
+                oldestConsole = c;
+            }
+
+            if (newestConsole === undefined) {
+                newestConsole = c;
+            } else if (newestConsole.year < c.year) {
+                newestConsole = c;
+            }
+        }
+
+        summary.innerHTML = `<strong>${consoles.length} Consoles</strong> · Oldest: ${oldestConsole.name} (${oldestConsole.year}) · Newest: ${newestConsole.name} (${newestConsole.year})`;
     } else {
         messages.textContent = "Consoles call did not return a 200 OK.";
     }
