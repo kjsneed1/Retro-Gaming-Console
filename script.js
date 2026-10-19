@@ -15,6 +15,8 @@ xml.addEventListener("load", () => {
             messages.textContent = "Consoles call did not return valid JSON.";
         }
 
+        messages.textContent = "";
+
         cards.innerHTML = "";
 
         for (let c of consoles) {
@@ -54,12 +56,12 @@ xml.addEventListener("load", () => {
 
         summary.innerHTML = `<strong>${consoles.length} Consoles</strong> · Oldest: ${oldestConsole.name} (${oldestConsole.year}) · Newest: ${newestConsole.name} (${newestConsole.year})`;
     } else {
-        messages.textContent = "Consoles call did not return a 200 OK.";
+        messages.textContent = `Consoles call did not return a 200 OK. Returned ${xml.status}.`; //Could not text with .jsonx at end of url, because of a CORS policy issue
     }
 });
 
-xml.open("GET", "https://ozarktechwebdev.com/api/consoles.json");
-
 loadButton.addEventListener("click", () => {
+    messages.textContent = "Loading...";
+    xml.open("GET", "https://ozarktechwebdev.com/api/consoles.json");
     xml.send();
 });
